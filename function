@@ -1,0 +1,106 @@
+#!/usr/bin/env node
+
+const fs = require('fs');
+const execSync = require('child_process').execSync;
+const wait = 1000;
+
+const endPoint = process.env['ENDPOINT'];
+const session = process.env['SESSION'];
+
+const packageId = process.env['packageId'];
+const versionName = process.env['versionName'];
+const versionNumber = process.env['versionNumber'];
+const description = process.env['description'];
+const params = JSON.parse(process.env['jsonInformation'].replaceAll(/(\\r\\n|\\r|\\n|\\)/g, ''));
+
+const branchName = params?.branch;
+const baseUrl = endPoint.substring(0, endPoint.indexOf('/', endPoint.indexOf('/') + 2));
+
+fs.mkdirSync('sfProject');
+process.chdir('sfProject');
+
+const setup = `
+    copado -p 'Cloning git repository'
+    copado-git-get ${branchName}
+    copado -p 'Checked out branch '${branchName}
+    
+	copado -p 'Setting instance url'
+    sfdx force:config:set instanceUrl=${baseUrl} --global
+`;
+
+execSync(setup);
+
+let flags = `
+${getFlag('loglevel', params?.loglevel)}
+${getFlag('targetdevhubusername', session)}
+${getFlag('apiversion', params?.apiversion)}
+${getStringFlag('package', packageId)}
+${getStringFlag('path', params?.path)}
+${getStringFlag('branch', branchName)}
+${getStringFlag('definitionfile', params?.definitionfile)}
+${getStringFlag('tag', params?.tag)}
+${getStringFlag('installationkey', params?.installationkey)}
+${getBooleanFlag('installationkeybypass', params?.installationkeybypass)}
+${getFlag('wait', wait)}
+${getStringFlag('versionname', versionName)}
+${getFlag('versionnumber', versionNumber)}
+${getStringFlag('versiondescription', description)}
+${getBooleanFlag('codecoverage', params?.codecoverage)}
+${getStringFlag('releasenotesurl', params?.releasenotesurl)}
+${getStringFlag('postinstallurl', params?.postinstallurl)}
+${getStringFlag('postinstallscript', params?.postinstallscript)}
+${getStringFlag('uninstallscript', params?.uninstallscript)}
+${getBooleanFlag('skipvalidation', params?.skipvalidation)}
+`;
+
+flags = flags.replace(/\n|\r/g, '');
+
+const createCmd = `
+        	copado -p 'Creating package version'
+            sfdx force:package:version:create ${flags} --json > response.json
+            copado -p 'Finishing'
+        `;
+
+execSync(createCmd);
+
+const response = JSON.parse(fs.readFileSync('response.json'));
+
+let updateCmd;
+
+if (response.status == 0 && response.result.Status == 'Success') {
+    const version = getLatestVersion();
+    updateCmd = `copado -p 'Package version created successfully' -r '${JSON.stringify(version)}'`;
+}
+else if (response.status == 1 && response.name == 'Error') {
+	updateCmd = `copado -p 'Package Version creation failed'
+    					-e '${JSON.stringify(response.message)}'
+                        -r '${JSON.stringify(response)}'
+                 exit 1`;
+}
+else {
+	updateCmd = `copado -p 'Package version creation did not finish' -r '${JSON.stringify(response)}'`;
+}
+
+execSync(updateCmd);
+
+function getFlag(flagname, value) {
+	return value ? ` --${flagname} ${value}` : '';
+}
+
+function getStringFlag(flagname, value) {
+	return value ? ` --${flagname} "${value}"` : '';
+}
+
+function getBooleanFlag(flagname, value) {
+	return value ? ` --${flagname}` : '';
+}
+
+function getLatestVersion() {
+	const listVersionsCmd = `sfdx force:package:version:list -v ${session} -p ${packageId} --json`;
+	const versions = JSON.parse(execSync(listVersionsCmd).toString());
+    const latestVersion = versions.result.find(
+  		(version) => version.SubscriberPackageVersionId === response.result.SubscriberPackageVersionId
+	);
+
+	return latestVersion;
+}
