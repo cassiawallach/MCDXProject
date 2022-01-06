@@ -11,7 +11,7 @@
     "name": "MCDXProject",
     "namespace": "",
     "sfdcLoginUrl": "https://login.salesforce.com",
-    "sourceApiVersion": "52.0",
+    "sourceApiVersion": "45.0",
     "packageAliases": {
         "mcdxpackage": "0Ho5f000000sYRACA2"
     }
