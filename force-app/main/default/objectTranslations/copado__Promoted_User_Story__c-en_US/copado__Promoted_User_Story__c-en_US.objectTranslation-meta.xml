@@ -4,11 +4,4 @@
         <label><!-- Promoted User Story Datatable --></label>
         <name>copado__Promoted_User_Story_Datatable</name>
     </fieldSets>
-    <layouts>
-        <layout>Promoted User Story Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
 </CustomObjectTranslation>

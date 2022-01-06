@@ -301,6 +301,11 @@
             <sortOrder>6</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
+            <actionName>copado__Apex_Test</actionName>
+            <actionType>CustomButton</actionType>
+            <sortOrder>7</sortOrder>
+        </platformActionListItems>
+        <platformActionListItems>
             <actionName>copado__Run_Static_Code_Analysis</actionName>
             <actionType>CustomButton</actionType>
             <sortOrder>8</sortOrder>
@@ -324,6 +329,11 @@
             <actionName>copado__Commit_Files</actionName>
             <actionType>CustomButton</actionType>
             <sortOrder>1</sortOrder>
+        </platformActionListItems>
+        <platformActionListItems>
+            <actionName>copado__Add_Apex_Tests</actionName>
+            <actionType>CustomButton</actionType>
+            <sortOrder>18</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
             <actionName>copado__Pull_Request</actionName>
@@ -359,16 +369,6 @@
             <actionName>Delete</actionName>
             <actionType>StandardButton</actionType>
             <sortOrder>17</sortOrder>
-        </platformActionListItems>
-        <platformActionListItems>
-            <actionName>copado__Add_Apex_Tests</actionName>
-            <actionType>CustomButton</actionType>
-            <sortOrder>18</sortOrder>
-        </platformActionListItems>
-        <platformActionListItems>
-            <actionName>copado__Apex_Test</actionName>
-            <actionType>CustomButton</actionType>
-            <sortOrder>7</sortOrder>
         </platformActionListItems>
     </platformActionList>
     <relatedLists>

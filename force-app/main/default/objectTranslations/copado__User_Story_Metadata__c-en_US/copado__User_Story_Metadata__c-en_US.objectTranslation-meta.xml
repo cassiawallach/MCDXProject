@@ -8,11 +8,4 @@
         <label><!-- MC Promotion User Story Metadata --></label>
         <name>copado__MC_Promotion_User_Story_Metadata</name>
     </fieldSets>
-    <layouts>
-        <layout>User Story Metadata Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
 </CustomObjectTranslation>

@@ -16,25 +16,6 @@
         <label><!-- Pipeline Manager --></label>
         <name>copado__Pipeline_Manager</name>
     </fieldSets>
-    <layouts>
-        <layout>Promotion Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <quickActions>
-        <label><!-- Deploy Changes --></label>
-        <name>copado__Deploy_Changes</name>
-    </quickActions>
-    <quickActions>
-        <label><!-- Merge Changes --></label>
-        <name>copado__Merge_Changes</name>
-    </quickActions>
-    <quickActions>
-        <label><!-- Merge &amp; Deploy Changes --></label>
-        <name>copado__Merge_Deploy</name>
-    </quickActions>
     <validationRules>
         <errorMessage><!-- Back Promotions to Scratch Orgs are not allowed --></errorMessage>
         <name>copado__Scratch_Orgs_Disabled_for_Back_Promoting</name>
