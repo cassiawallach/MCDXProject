@@ -1,16 +1,26 @@
 {
     "packageDirectories": [
-        {"path": "force-app",
-        "default": true,
-        "package": "mcdxpackage",
-        "versionName": "ver 0.1",
-        "versionNumber": "0.1.0.NEXT"}
+        {
+            "path": "force-app",
+            "default": false,
+            "package": "mcdxpackage",
+            "versionName": "ver 0.1",
+            "versionNumber": "0.1.0.NEXT"
+        },
+        {
+            "path": "force-app",
+            "package": "dxpackage",
+            "versionName": "ver 0.1",
+            "versionNumber": "0.1.0.NEXT",
+            "default": true
+        }
     ],
     "name": "MCDXProject",
     "namespace": "",
     "sfdcLoginUrl": "https://login.salesforce.com",
     "sourceApiVersion": "52.0",
     "packageAliases": {
-        "mcdxpackage": "0Ho5f000000sYRACA2"
+        "mcdxpackage": "0Ho5f000000sYRACA2",
+        "dxpackage": "0Ho5f000000sYRFCA2"
     }
 }

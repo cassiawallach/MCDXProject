@@ -7,4 +7,18 @@
         <shortDescription>Recording Label</shortDescription>
         <value>value value test test</value>
     </labels>
+    <labels>
+        <fullName>DX_LABEL_TEST_2</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DX LABEL TEST 2</shortDescription>
+        <value>DX LABEL TEST 2 DX LABEL TEST 2 DX LABEL TEST 2dfgsdfsdfsdf</value>
+    </labels>
+    <labels>
+        <fullName>DX_LABEL_TEST_3</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DX LABEL TEST 3</shortDescription>
+        <value>DX LABEL TEST 3</value>
+    </labels>
 </CustomLabels>
