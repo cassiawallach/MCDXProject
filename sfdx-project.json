@@ -2,6 +2,8 @@
     "packageDirectories": [
         {
             "path": "force-app",
+            "path" : "unpackaged",
+            "path" : "utils",
             "default": true,
             "package": "mcdxpackage",
             "versionName": "ver 0.1",
@@ -11,7 +13,7 @@
     "name": "MCDXProject",
     "namespace": "",
     "sfdcLoginUrl": "https://login.salesforce.com",
-    "sourceApiVersion": "45.0",
+    "sourceApiVersion": "52.0",
     "packageAliases": {
         "mcdxpackage": "0Ho5f000000sYRACA2"
     }
